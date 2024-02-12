@@ -1,0 +1,173 @@
+\section{Matrices}
+A \textbf{matrix} is a rectangular array of numbers. If a matrix has $m$ rows and $n$ columns, then we call it a $(m\times n)$-matrix, and we call $(m\times n)$ the \textbf{dimension} of the matrix. The set of all square $(n\times n)$-matrices with real entries is denoted $M_{n}(\R)$. The entry in the $i$\textsuperscript{th} row and $j$\textsuperscript{th} column of a matrix $A$ is denoted $A_{ij}$.
+\subsection{Matrix multiplication}
+Matrix multiplication can be thought of as taking the dot product of the rows of the first matrix with the columns of the second matrix.
+\begin{definition}[Matrix multiplication]
+  Given a $(m\times n)$-matrix $A$ and a $(n\times p)$-matrix B, their product is a $(m\times p)$-matrix $AB$, where the entries are \[
+    (AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}
+  .\] 
+\end{definition}
+\begin{example}
+  We have 
+  \begin{equation*}
+    \begin{bmatrix}
+      a & b \\ c & d
+    \end{bmatrix}
+    \begin{bmatrix}
+      e & f \\ g & h
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+      ae + bg & af + bh \\ ce + dg & cf + dh
+    \end{bmatrix}.
+  \end{equation*}
+\end{example}
+\begin{remark}
+  The matrix product $AB$ is only defined if the number of columns of $A$ is equal to the number of rows of $B$.
+\end{remark}
+\subsection{Matrix transpose}
+The matrix transpose is a useful operation on a single matrix. There are many properties of the matrix transpose.
+\begin{definition}
+  Given a matrix $A$, the \textbf{transpose} of $A$ is denoted $A^T$, such that \[
+    (A^T)_{ij} = A_{ji}
+  .\] 
+\end{definition}
+\begin{definition}
+  A matrix $A$ is \textbf{symmetric} if $A = A^T$.
+\end{definition}
+\begin{theorem}
+  For matrices $A$ and $B$ where $AB$ is defined, we have  \[
+    (AB)^T = B^TA^T
+  .\] 
+\end{theorem}
+\begin{proof}
+  We know by definition that $((AB)^T)_{ij} = (AB)_{ji}$. Using the definition of matrix multiplication, we have 
+  \begin{align*}
+    (AB)_{ji} &= \sum_{k = 1}^{n} A_{jk}B_{ki} \\
+              &= \sum_{k=1}^{n} B_{ki}A_{jk} \\
+              &= \sum_{k=1}^{n} (B^T)_{ik}(A^T)_{kj} \\
+              &= (B^TA^T)_{ij}.
+  \end{align*}
+  As this holds for all $i, j$, we must have that $(AB)^T = B^TA^T$.
+\end{proof}
+\subsection{Trace}
+The \textbf{trace} of a square matrix $A$ is the sum of the diagonal entries of $A$, and is denoted $\tr(A)$.
+\begin{theorem}
+  Given $(n\times n)$-matrices $A$ and $B$, we have \[
+    \tr(AB) = \tr(BA)
+  .\] 
+\end{theorem}
+\subsection{Matrix inverses}
+A square matrix $A$ has an \textbf{inverse} if there exists a matrix $B$ such that $AB = BA = I$, where $I$ is the identity matrix.
+\begin{remark}
+  Matrix multiplication is \textbf{not} commutative, that is $AB \neq BA$ in general.
+\end{remark}
+If there exists such a matrix $B$, then we call it the \textbf{inverse} of $A$, and denote it $B = A^{-1}$. A matrix is \textbf{invertible} if it has an inverse, and \textbf{singular} if it does not have an inverse.
+
+\begin{theorem}
+  Matrix inverses are unique. That is, if $A$ has an inverse $A^{-1}$, then $A^{-1}$ is unique.
+\end{theorem}
+\begin{proof}
+  Suppose $A$ has inverse $B$ and $C$, such that
+  \begin{align*}
+    AB = BA &= I \\
+    AC = CA &= I.
+  \end{align*}
+  We have 
+  \begin{align*}
+    C = CI &= C(AB) \\
+           &= (CA)B \\
+           &= IB \\
+           &= B.
+  \end{align*}
+  Hence $B = C$, so $A^{-1}$ is unique.
+\end{proof}
+\begin{theorem}
+  If $A$ and $B$ are matrices such that $AB$ is defined and $AB$ is invertible, then \[
+    (AB)^{-1} = B^{-1}A^{-1}
+  .\] 
+\end{theorem}
+\begin{proof}
+  Using associativity, we have
+  \begin{align*}
+    (AB)(B^{-1}A^{-1}) &= A(BB^{-1})A^{-1} \\
+                       &= AIA^{-1} \\
+                       &= AA^{-1} \\
+                       &= I.
+  \end{align*}
+  Moreover, we have 
+  \begin{align*}
+    (B^{-1}A^{-1})(AB) &= B^{-1}(A^{-1}A)B \\
+                       &= B^{-1}IB \\
+                       &= B^{-1}B \\
+                       &= I.
+  \end{align*}
+  Hence $(AB)^{-1} = B^{-1}A^{-1}$.
+\end{proof}
+\begin{theorem}
+  If $A$ and $B$ are invertible matrices of the same dimension, then the following all hold:
+  \begin{enumerate}
+    \item  $(A^{-1})^{-1} = A$,
+    \item $(AB)^{-1} = B^{-1}A^{-1}$,
+    \item $(A^{T})^{-1} = (A^{-1})^T$.
+  \end{enumerate}
+\end{theorem}
+\begin{theorem}
+  The inverse of a general $(2\times 2)$-matrix is given by 
+  \begin{equation*}
+    \begin{bmatrix}
+      a & b \\ c & d
+    \end{bmatrix}^{-1} = 
+    \frac{1}{ad - bc}\begin{bmatrix}
+      d & -b \\ -c & a
+    \end{bmatrix}.
+  \end{equation*}
+\end{theorem}
+\subsection{Determinants}
+The \textbf{determinant} of a square matrix $A$ is a function of its entries that outputs a real number, denoted $\det(A)$. In other words, we have  \[
+  \det\colon \{\text{all square matrices}\} \to \R
+.\] 
+\begin{theorem}
+  If $A$ is a square matrix, then \[
+    \det(A) \neq  0 \iff A \text{ is invertible}
+  .\] 
+\end{theorem}
+For $(2\times 2)$-matrices, the determinant is defined as \[
+  \det\left( \begin{bmatrix}a & b \\ c & d\end{bmatrix} \right) = \begin{vmatrix}a & b \\ c & d\end{vmatrix} = ad - bc
+.\] 
+The determinant satisfies many properties.
+\begin{theorem}
+  Given two square matrices $A$ and $B$, then the following properties always hold:
+  \begin{enumerate}
+    \item $\det(AB) = \det(A)\det(B)$.
+    \item $\det(A^T) = \det(A)$.
+  \end{enumerate}
+\end{theorem}
+\begin{theorem}
+  If $I$ is an identity matrix, then \[
+    \det(I) = 1
+  .\] 
+\end{theorem}
+\begin{corollary}
+  If $A$ is invertible, then  \[
+    \det(A^{-1}) = \frac{1}{\det(A)}
+  .\] 
+\end{corollary}
+\subsection{Matrices as transformations}
+Let $A$ be a $(m\times n)$ matrix. Consider a column vector $B$ of length $n$, such that $AB$ is defined. Then $AB$ has dimension $(m\times 1)$, so it is a column vector of length $m$. \[
+  \begin{bmatrix}
+    a_{11} & \dots & \dots & a_{1n} \\
+    \vdots & \ddots & & \vdots \\
+    \vdots & & \ddots & \vdots \\
+    a_{m_1} & \dots & \dots & a_{mn}
+  \end{bmatrix}
+  \begin{bmatrix}
+    b_1 \\ \vdots \\ b_{n}
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+    c_1 \\ \vdots \\ \vdots \\ c_{m}
+  \end{bmatrix}
+\] Thus we can think of a $(m\times n)$matrix $A$ as a mapping from $\R^n$ to $\R^m$, that is, \[
+  A\colon \R^n \to \R^m
+.\] 

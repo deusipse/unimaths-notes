@@ -1,0 +1,122 @@
+\section{Vectors}
+Euclidean space is commonly encountered. In general, we may have $n$ dimensions, in which algebra behaves much the same.
+ \begin{definition}
+  We define $n$-dimensional Euclidean space to be the set of all tuples \[
+    R^n = \{(x_1, x_2, \dots, x_n) : x_i \in \R\ \text{for all}\ 1 \le i \le n\}
+  .\] 
+\end{definition}
+\begin{definition}[Linear dependency]
+  If $S = \{\vec{v}_1, \dots, \vec{v}_k\}$ is a collection of vectors, then $S$ is \textbf{linearly dependent} if there exist scalars $\lambda_1, \dots, \lambda_k$ such that \[
+    \lambda_1 \vec{v}_1 + \lambda_2 \vec{v}_2 + \dots + \lambda_k \vec{v}_k = \vec{0}
+  ,\] and $\lambda_i$ are not all equal to zero. If such  $\lambda_i$ do not exist, then  $S$ is \textbf{linearly independent}.
+\end{definition}
+\begin{definition}
+  The \textbf{magnitude} of a vector $\vec{u} \in \R^n$ is defined to be \[
+    \norm{u} = \sqrt{u_1^2 + \dots + u_n^2} 
+  .\] 
+\end{definition}
+\begin{definition}[Dot product]
+  Given two vectors $\vec{u}, \vec{v} \in \R^n$, we define the \textbf{dot product} to be $\vec{u}\cdot \vec{v}$ such that \[
+    \vec{u}\cdot \vec{v} = u_1v_1 + u_2v_2 + \dots + u_n v_n
+  .\] 
+\end{definition}
+\begin{remark}
+  The dot product gives us a quantitiative measure of linear dependence.
+\end{remark}
+\begin{theorem}[Dot product properties]
+  Suppose we have two vectors $\vec{u}, \vec{v} \in \R^n$. Then the following properties all hold:
+  \begin{enumerate}
+    \item $\vec{u}\cdot \vec{v} = \vec{v}\cdot \vec{u}$,
+    \item $k(\vec{u} \cdot \vec{v}) = k \vec{u} \cdot \vec{v} = \vec{u} k \vec{v}$,
+    \item $\vec{u}\cdot (\vec{v} + \vec{w}) = \vec{u}\cdot \vec{v} + \vec{u}\cdot \vec{w}$,
+    \item $\vec{u}\cdot \vec{u} = \norm{\vec{u}}^2 \ge 0$, and $\vec{u}\cdot \vec{u} = 0$ iff $\vec{u} = \vec{0}$.
+  \end{enumerate}
+\end{theorem}
+\begin{definition}[Distance]
+  The \textbf{distance} between two vectors $\vec{u}, \vec{v} \in \R^n$ is given by \[
+    d(\vec{u}, \vec{v}) = \norm{\vec{u} - \vec{v}} = \sqrt{(u_1 - v_1)^2 + \dots + (u_n - v_n)^2} 
+  .\] 
+\end{definition}
+\begin{remark}
+  The distance function satisfies commutativity, and is non-negative.
+\end{remark}
+\begin{theorem}[Cauchy-Schwarz]
+  If $\vec{u}, \vec{v} \in \R^n$, then \[
+    \abs{\vec{u}\cdot \vec{v}}\le \norm{\vec{u}}\norm{\vec{v}}
+  .\] 
+\end{theorem}
+\begin{proof}
+  If $\vec{v} = \vec{0}$, then the result is obviously true as the left hand side is equal to 0. Hence we assume that $\vec{v} \neq  \vec{0}$.
+
+  Define $f\colon \R \to \R, f(t) = (\vec{u} + t\vec{v})\cdot (\vec{u} + t\vec{v})$. Using the distributive property of the dot product, we have 
+  \begin{align*}
+    f(t) &= \vec{u}\cdot \vec{u} + 2t (\vec{u}\cdot \vec{v}) + t^2 (\vec{v}\cdot \vec{v}) \\
+         &= \norm{\vec{u}}^2 + 2t(\vec{u}\cdot \vec{v}) + t^2 \norm{\vec{v}}^2,
+  \end{align*} so $f$ is a quadratic in $t$. Since $f(t) \ge 0$ by positive definiteness, we have that the descriminant $\Delta \le  0$, giving us 
+  \begin{align*}
+    \Delta = 4(\vec{u}\cdot \vec{v})^2 - 4\norm{\vec{u}}\norm{\vec{v}}^2 &\le  0 \\
+    \abs{\vec{u}\cdot \vec{v}} &\le \norm{\vec{u}}\norm{\vec{v}},
+  \end{align*} with inequality iff either $\vec{u}$ or $\vec{v}$ is equal to $\vec{0}$, or $\vec{u} = t\vec{v}$ for some scalar $t$.
+\end{proof}
+\begin{theorem}
+  If $\vec{u}, \vec{v} \in \R^n$, then \[
+    \vec{u}\cdot \vec{v} = \norm{\vec{u}}\norm{\vec{v}}\cos \theta
+  ,\] where $\theta$ is the angle between $\vec{u}$ and $\vec{v}$.
+\end{theorem}
+\begin{remark}
+  Note that the `angle' between the two vectors are only well defined for $n = 2, 3$. In higher dimensions, we may \emph{define} the angle using the theorem.
+\end{remark}
+\begin{theorem}[Generalised Pythagoras]
+  If $\vec{u}, \vec{v} \in \R^n$, and $\vec{u}\cdot \vec{v} = 0$, then \[
+    \norm{\vec{u} + \vec{v}}^2 = \norm{\vec{u}}^2 + \norm{\vec{v}}^2 = 
+  .\] 
+\end{theorem}
+\begin{proof}
+  We have
+  \begin{align*}
+    \norm{\vec{u} + \vec{v}}^2 &= (\vec{u} + \vec{v})\cdot (\vec{u} + \vec{v}) \\
+                               &= \vec{u}\cdot \vec{u} + 2(\vec{u}\cdot \vec{v}) + \vec{v}\cdot \vec{v} \\
+                               &= \norm{\vec{u}}^2 + \norm{\vec{v}}^2,
+  \end{align*} as required.
+\end{proof}
+\begin{theorem}[Triangle Inequality]
+  If $\vec{u}, \vec{v} \in \R^n$, then \[
+    \norm{\vec{u}+\vec{v}} \le \norm{\vec{u}} + \norm{\vec{v}}
+  .\] 
+\end{theorem}
+\begin{proof}
+  We have 
+  \begin{align*}
+    \norm{\vec{u} + \vec{v}}^2 &= \norm{\vec{u}}^2 + 2(\vec{u}\cdot \vec{v}) + \norm{\vec{v}}^2 \\
+                               &\le \norm{\vec{u}}^2 + 2(\norm{\vec{u}}\norm{\vec{v}}) + \norm{\vec{v}}^2 \tag{Cauchy-Schwarz}\\
+                               &= (\norm{\vec{u}} + \norm{\vec{v}})^2,
+  \end{align*} from where the result follows.
+\end{proof}
+\begin{definition}[Vector resolute]
+  The \textbf{vector resolute} of a vector $\vec{u}$ in the direction of $\vec{v}$ is $(\vec{u}\cdot \hat{\vec{v}})\hat{\vec{v}}$.
+\end{definition}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \coordinate (A) at (0, 0) {};
+      \coordinate (B) at (4, 0) {};
+      \coordinate (C) at (4, 3) {};
+      \tkzMarkRightAngle[size=.4](A,B,C);
+      \draw[-latex] (0, 0) -- (4, 0) node[midway, below] {$\vec{a}$};
+      \draw[-latex] (0, 0) -- (6, 0);
+      \draw (5, 0) node[below] {$\vec{v}$};
+      \draw[-latex] (0, 0) -- (4, 3) node[midway, above left] {$\vec{u}$};
+      \draw[-latex, crimson, dashed] (4, 0) -- (4, 3) node[midway, right] {$\vec{b}$};
+  \end{tikzpicture}
+  \caption{Here, $\vec{b}$ is the vector resolute of $\vec{u}$ in the direction of $\vec{v}$.}
+\end{figure}
+We can then decompose the vector $\vec{u}$ into two components, one being parallel ot $\vec{v}$, and one perpendicular: \[
+  \vec{u} = (\vec{u}\cdot \hat{\vec{v}})\hat{\vec{v}} + (\vec{u} - (\vec{u}\cdot \hat{\vec{v}})\hat{\vec{v}})
+.\] 
+We can now verify that these vectors are indeed perpendicular by evaluating the dot product:
+\begin{align*}
+  ((\vec{u}\cdot \hat{\vec{v}})\hat{\vec{v}})\cdot (\vec{u} - (\vec{u}\cdot \hat{\vec{v}})\hat{\vec{v}}) &= ((\vec{u}\cdot \hat{\vec{v}})\hat{\vec{v}})\cdot \vec{u} - ((\vec{u}\cdot \hat{\vec{v}})\hat{\vec{v}})\cdot ((\vec{u}\cdot \hat{\vec{v}})\hat{\vec{v}}) \\
+                                                                                                         &= (\vec{u}\cdot \hat{\vec{v}})(\hat{\vec{v}}\cdot \vec{u}) - \norm{(\vec{u}\cdot \hat{\vec{v}})\hat{\vec{v}}}^2 \\
+                                                                                                         &= (\vec{u}\cdot \hat{\vec{v}})^2 - (\vec{u}\cdot \hat{\vec{v}})^2 \\
+                                                                                                         &= 0,
+\end{align*} showing that they are perpendicular.
