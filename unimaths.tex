@@ -1,0 +1,77 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amogus}
+
+\title{\bfseries MAST10018 \\ Linear Algebra \\ Extension Studies}
+\author{\scshape Edward Wang}
+\date{Semester 1, 2024}
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+\section{Matrices}
+A \textbf{matrix} is a rectangular array of numbers. If a matrix has $m$ rows and $n$ columns, then we call it a $(m\times n)$-matrix. The set of all square $(n\times n)$-matrices with real entries is denoted $M_{n}(\R)$. The entry in the $i$\textsuperscript{th} row and $j$\textsuperscript{th} column of a matrix $A$ is denoted $A_{ij}$.
+\subsection{Matrix multiplication}
+Matrix multiplication can be thought of as taking the dot product of the rows of the first matrix with the columns of the second matrix.
+\begin{definition}[Matrix multiplication]
+  Given a $(m\times n)$-matrix $A$ and a $(n\times p)$-matrix B, their product is a $(m\times p)$-matrix $AB$, where the entries are \[
+    (AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}
+  .\] 
+\end{definition}
+\begin{example}
+  We have 
+  \begin{equation*}
+    \begin{bmatrix}
+      a & b \\ c & d
+    \end{bmatrix}
+    \begin{bmatrix}
+      e & f \\ g & h
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+      ae + bg & af + bh \\ ce + dg & cf + dh
+    \end{bmatrix}.
+  \end{equation*}
+\end{example}
+\begin{remark}
+  The matrix product $AB$ is only defined if the number of columns of $A$ is equal to the number of rows of $B$.
+\end{remark}
+\subsection{Matrix transpose}
+The matrix transpose is a useful operation on a single matrix. There are many properties of the matrix transpose.
+\begin{definition}
+  Given a matrix $A$, the \textbf{transpose} of $A$ is denoted $A^T$, such that \[
+    (A^T)_{ij} = A_{ji}
+  .\] 
+\end{definition}
+\begin{definition}
+  A matrix $A$ is \textbf{symmetric} if $A = A^T$.
+\end{definition}
+\begin{theorem}
+  For matrices $A$ and $B$ where $AB$ is defined, we have  \[
+    (AB)^T = B^TA^T
+  .\] 
+\end{theorem}
+\begin{proof}
+  We know by definition that $((AB)^T)_{ij} = (AB)_{ji}$. Using the definition of matrix multiplication, we have 
+  \begin{align*}
+    (AB)_{ji} &= \sum_{k = 1}^{n} A_{jk}B_{ki} \\
+              &= \sum_{k=1}^{n} B_{ki}A_{jk} \\
+              &= \sum_{k=1}^{n} (B^T)_{ik}(A^T)_{kj} \\
+              &= (B^TA^T)_{ij}.
+  \end{align*}
+  As this holds for all $i, j$, we must have that $(AB)^T = B^TA^T$.
+\end{proof}
+\subsection{Trace}
+The \textbf{trace} of a square matrix $A$ is the sum of the diagonal entries of $A$, and is denoted $\tr(A)$.
+\begin{theorem}
+  Given $(n\times n)$-matrices $A$ and $B$, we have \[
+    \tr(AB) = \tr(BA)
+  .\] 
+\end{theorem}
+\subsection{Matrix inverses}
+A square matrix $A$ has an \textbf{inverse} if there exists a matrix $B$ such that $AB = BA = I$, where $I$ is the identity matrix.
+\begin{remark}
+  Matrix multiplication is \textbf{not} commutative, that is $AB \neq BA$ in general.
+\end{remark}
+If there exists such a matrix $B$, then we call it the \textbf{inverse} of $A$, and denote it $B = A^{-1}$. A matrix is \textbf{invertible} if it has an inverse, and \textbf{singular} if it does not have an inverse.
+\end{document}
